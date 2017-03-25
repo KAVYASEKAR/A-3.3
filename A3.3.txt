@@ -1,0 +1,35 @@
+List the components of hadoop2.X and explain each component in detail.
+
+Answer:
+
+The main components of hadoop 2.X are (a) HDFS
+ (b) YARN
+ (c) MapReduce
+
+These components are known as the three pillars of Hadoop 2.x. The  major key component change is YARN. It is a game changing component in BigData Hadoop System.
+
+(a) HDFS:
+HDFS Federation is incuded in Hadoop 2.x
+In HDFS federation, there are multiple NameNodes, each storing metadata and block mapping of files
+and directories contained in particular sub-directories
+• The list of sub-directories managed by a NameNode is called a namespace volume
+• Blocks for files belonging to a Namespace is called a block pool
+For example, here we can have two NameNodes, one for storing the metadata and block mapping for the
+namespace volume, /usr and one for /share
+• In this way, if one NameNode fails, the namespace volume managed by the other NameNode is still
+accessible. So that the entire cluster doesn’t become inaccessible.
+
+(b) YARN:
+The fundamental idea of YARN is to split up the functionalities of resource management and job scheduling/monitoring into separate daemons. 
+The idea is to have a global ResourceManager (RM) and per-application ApplicationMaster (AM). An application is either a single job or a DAG of jobs.
+The ResourceManager and the NodeManager form the data-computation framework. 
+The ResourceManager is the ultimate authority that arbitrates resources among all the applications in the system. The NodeManager is the per-machine framework agent who is responsible for containers, monitoring their resource usage and reporting the same to the ResourceManager/Scheduler.
+YARN based Hadoop architecture, supports parallel processing of huge data sets
+
+(c) Map Reduce:
+MapReduce is responsible for the analysing large datasets in parallel before reducing it to find the results. In the Hadoop ecosystem, Hadoop MapReduce is a framework based on YARN architecture. 
+MapReduce provides the framework for easily writing applications on thousands of nodes, considering fault and failure management.
+The basic principle of operation behind MapReduce is that the “Map” job sends a query for processing to various nodes in a Hadoop cluster and the “Reduce” job collects all the results to output into a single value. 
+Map Task in the Hadoop ecosystem takes input data and splits into independent chunks and output of this task will be the input for Reduce Task. 
+In The same Hadoop ecosystem Reduce task combines Mapped data tuples into smaller set of tuples. Meanwhile, both input and output of tasks are stored in a file system. MapReduce takes care of scheduling jobs, monitoring jobs and re-executes the failed task.
+
